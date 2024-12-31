@@ -8,11 +8,6 @@ pipeline{
         maven 'Maven3'
     }
     stages{
-        stage("variables"){
-            steps{
-                sh "alias maven='/home/jenkins/tools/hudson.tasks.Maven_MavenInstallation/Maven3/bin/mvn'"
-            }
-        }
         stage("Cleanup Workspace"){
             steps{
                 cleanWs()
@@ -21,6 +16,11 @@ pipeline{
         stage("Checkout from SCM"){
             steps{
                 git branch: 'main', credentialsId: 'github' , url: 'https://github.com/tnubeo1111/learn-jenkins-app'
+            }
+        }
+        stage("variables"){
+            steps{
+                sh "alias maven='/home/jenkins/tools/hudson.tasks.Maven_MavenInstallation/Maven3/bin/mvn'"
             }
         }
         stage("Build application"){
