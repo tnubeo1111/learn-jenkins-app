@@ -18,15 +18,18 @@ pipeline{
                 git branch: 'main', credentialsId: 'github' , url: 'https://github.com/tnubeo1111/learn-jenkins-app'
             }
         }
-        stage("variables"){
-            steps{
-                sh "alias maven='/home/jenkins/tools/hudson.tasks.Maven_MavenInstallation/Maven3/bin/mvn'"
-            }
+        stage("env Maven") {
+            steps {
+                withEnv(['PATH+MAVEN=/home/jenkins/tools/hudson.tasks.Maven_MavenInstallation/Maven3/bin']) {
+                    sh 'mvn --version'
+                    sh 'mvn clean package'
+                }
+            }   
         }
-        stage("Build application"){
-            steps{
-                sh 'maven clean install -DskipTests=true'
-            }
-        }
+        // stage("Build application"){
+        //     steps{
+        //         sh 'maven clean install -DskipTests=true'
+        //     }
+        // }
     }
 }
