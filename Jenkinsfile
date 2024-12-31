@@ -10,7 +10,7 @@ pipeline{
     stages{
         stage("variables"){
             steps{
-                sh 'maven="/home/jenkins/tools/hudson.tasks.Maven_MavenInstallation/Maven3/bin/mvn"'
+                sh "alias maven='/home/jenkins/tools/hudson.tasks.Maven_MavenInstallation/Maven3/bin/mvn'"
             }
         }
         stage("Cleanup Workspace"){
