@@ -18,5 +18,10 @@ pipeline{
                 git branch: 'main', credentialsId: 'github' , url: 'https://github.com/tnubeo1111/learn-jenkins-app'
             }
         }
+        stage("Build application"){
+            steps{
+                sh 'mvn clean install -DskipTests=true'
+            }
+        }
     }
 }
