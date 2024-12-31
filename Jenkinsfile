@@ -21,15 +21,13 @@ pipeline{
         stage("env Maven") {
             steps {
                 withEnv(['PATH+MAVEN=/home/jenkins/tools/hudson.tasks.Maven_MavenInstallation/Maven3/bin']) {
-                    sh 'mvn --version'
-                    sh 'mvn clean package'
                 }
             }   
         }
-        // stage("Build application"){
-        //     steps{
-        //         sh 'maven clean install -DskipTests=true'
-        //     }
-        // }
+        stage("Build application"){
+            steps{
+                sh 'maven clean install -DskipTests=true'
+            }
+        }
     }
 }
