@@ -29,5 +29,17 @@ pipeline{
                 sh 'mvn clean install -DskipTests=true'
             }
         }
+        stage("Test File exists"){
+            steps{
+                sh '''
+                    FILE=/home/jenkins/.m2/repository/org/example/org.example.codegen/0.0.1-SNAPSHOT/org.example.codegen-0.0.1-SNAPSHOT.jar
+                    if [ -f "$FILE" ]; then
+                        echo "$FILE exists."
+                    else 
+                        echo "$FILE does not exist."
+                    fi
+                '''
+            }
+        }
     }
 }
